@@ -1,0 +1,30 @@
+<table class="ui-table">
+  <thead class="ui-table__head">
+    <tr class="ui-table__row">
+      @for (header of headers(); let i = $index; track header) {
+        <th
+          class="ui-table__header"
+          (click)="onSort(i)"
+				>
+					{{ header }}
+					<span
+						class="sort-indicator"
+						[class.sort-indicator_active]="sortColumn() === i"
+						[class.sort-indicator_asc]="sortDirection() === 'asc'"
+					>
+						▲
+					</span>
+        </th>
+      }
+    </tr>
+  </thead>
+  <tbody class="ui-table__body">
+    @for (row of sortedData(); track row) {
+      <tr class="ui-table__row">
+        @for (cell of row; track cell) {
+          <td class="ui-table__cell">{{ cell }}</td>
+        }
+      </tr>
+    }
+  </tbody>
+</table>
